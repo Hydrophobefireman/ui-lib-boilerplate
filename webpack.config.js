@@ -1,6 +1,5 @@
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoPrefixPlugin = require("autoprefixer");
 
 const WebpackModuleNoModulePlugin = require("webpack-module-nomodule-plugin");
@@ -95,8 +94,6 @@ function getCfg(isLegacy) {
           !1
         ),
       }),
-
-      new MiniCssExtractPlugin({}),
       isProd &&
         new OptimizeCSSAssetsPlugin({ cssProcessor: require("cssnano") }),
       new WebpackModuleNoModulePlugin(isLegacy ? "legacy" : "modern"),
