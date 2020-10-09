@@ -18,7 +18,7 @@ function prodOrDev(a, b) {
 }
 
 const jsLoaderOptions = (isLegacy) => ({
-  test: /\.m?js$/,
+  test: /\.(m?js|tsx?)$/,
   exclude: /(node_modules\/(?!@hydrophobefireman))|(injectables)/,
   use: {
     loader: "babel-loader",
@@ -76,12 +76,13 @@ function getCfg(isLegacy) {
         contentLoaderOptions,
       ],
     },
-    entry: `${__dirname}/src/App.js`,
+    entry: `${__dirname}/src/App.tsx`,
     output: {
       environment: getEnvObject(isLegacy),
       path: `${__dirname}/docs/`,
       filename: `${isLegacy ? "legacy" : "es6"}/[name]-[contenthash].js`,
     },
+    resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },
     mode,
     optimization: {
       concatenateModules: false,

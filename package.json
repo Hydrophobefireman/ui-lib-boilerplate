@@ -5,10 +5,10 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server",
-    "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "prebuild": "rm -rf ./docs/",
-    "postbuild": "for i in ./build_static/*;do echo \"$i\" && cp -r \"$i\" ./docs/; done"
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "prebuild": "tsc --noEmit && rimraf ./docs",
+    "postbuild": "node scripts/.copy-files.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@hydrophobefireman/j-utils": "^2.1.1",
     "@hydrophobefireman/qwc": "^0.0.6",
-    "@hydrophobefireman/ui-lib": "^1.5.3"
+    "@hydrophobefireman/ui-lib": "^1.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -32,11 +32,13 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-modules": "^0.1.4",
+    "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime-corejs3": "^7.11.2",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
     "catom": "^0.1.15",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
     "cssnano": "^4.1.10",
     "file-loader": "^6.1.0",
@@ -46,9 +48,11 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss": "^8.1.1",
     "postcss-loader": "^4.0.3",
+    "rimraf": "^3.0.2",
     "style-ext-html-webpack-plugin": "^4.1.2",
     "terser": "^5.3.4",
     "terser-webpack-plugin": "^4.2.3",
+    "typescript": "^4.0.3",
     "url-loader": "^4.1.0",
     "webpack": "^5.0.0-rc.4",
     "webpack-cli": "^3.3.12",
