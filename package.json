@@ -8,8 +8,7 @@
     "start": "cross-env NODE_ENV=development webpack-cli serve",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "prebuild": "tsc --noEmit && rimraf ./docs",
-    "postbuild": "node scripts/.copy-files.js",
-    "postinstall": "rimraf ./node_modules/@types/webpack"
+    "postbuild": "node scripts/.copy-files.js"
   },
   "repository": {
     "type": "git",
@@ -23,24 +22,25 @@
   "dependencies": {
     "@hydrophobefireman/j-utils": "^2.1.1",
     "@hydrophobefireman/qwc": "^0.0.6",
-    "@hydrophobefireman/ui-lib": "^1.5.5"
+    "@hydrophobefireman/ui-lib": "^1.5.5",
+    "statedrive": "^0.0.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/core": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-react-jsx": "^7.10.4",
-    "@babel/plugin-transform-runtime": "^7.11.5",
-    "@babel/preset-env": "^7.11.5",
+    "@babel/plugin-transform-react-jsx": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "@babel/preset-modules": "^0.1.4",
-    "@babel/preset-typescript": "^7.10.4",
-    "@babel/runtime-corejs3": "^7.11.2",
+    "@babel/preset-typescript": "^7.12.1",
+    "@babel/runtime-corejs3": "^7.12.1",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
     "catom": "^0.1.16",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "css-loader": "^4.3.0",
+    "css-loader": "^5.0.0",
     "cssnano": "^4.1.10",
     "file-loader": "^6.1.1",
     "html-inline-css-webpack-plugin": "^1.9.0",
@@ -51,14 +51,14 @@
     "postcss-loader": "^4.0.4",
     "rimraf": "^3.0.2",
     "style-ext-html-webpack-plugin": "^4.1.2",
-    "terser": "^5.3.4",
-    "terser-webpack-plugin": "^4.2.3",
+    "terser": "^5.3.5",
+    "terser-webpack-plugin": "^5.0.0",
     "typescript": "^4.0.3",
     "url-loader": "^4.1.1",
-    "webpack": "^5.0.0",
+    "webpack": "^5.1.2",
     "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.11.0",
-    "webpack-module-nomodule-plugin": "0.4.0"
+    "webpack-module-nomodule-plugin": "1.0.1"
   },
   "homepage": "https://github.com/Hydrophobefireman/site#readme"
 }
