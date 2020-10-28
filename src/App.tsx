@@ -1,4 +1,4 @@
-import { render } from "@hydrophobefireman/ui-lib";
+import { render ,VNode} from "@hydrophobefireman/ui-lib";
 import { RouteLoader } from "./components/RouteLoader";
 import "./App.css";
 
