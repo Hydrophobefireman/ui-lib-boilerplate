@@ -19,7 +19,7 @@ function prodOrDev(a, b) {
 
 const jsLoaderOptions = (isLegacy) => ({
   test: /\.(m?js|tsx?)$/,
-  exclude: /(node_modules\/(?!@hydrophobefireman))|(injectables)/,
+  exclude: /(node_modules\/(?!(@hydrophobefireman|statedrive)))|(injectables)/,
   use: {
     loader: "babel-loader",
     options: cfg.env[isLegacy ? "legacy" : "modern"],
