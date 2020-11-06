@@ -1,8 +1,8 @@
-import { render ,VNode} from "@hydrophobefireman/ui-lib";
+import { render, VNode } from "@hydrophobefireman/ui-lib";
 import { RouteLoader } from "./components/RouteLoader";
 import "./App.css";
 
-function App() {
+function App(): VNode {
   return (
     <main>
       <RouteLoader />

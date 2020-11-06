@@ -1,13 +1,13 @@
 import { Router, Path, AsyncComponent } from "@hydrophobefireman/ui-lib";
 import { Object_entries as entries } from "@hydrophobefireman/j-utils";
-import { NotFound } from "../pages/404/404";
-import { ChunkLoading } from "./ChunkLoadingComponent";
+import { NotFound } from "../../pages/404";
+import { ChunkLoading } from "../ChunkLoadingComponent";
 
 const getDefault: <T>(mod: { default: T }) => T = (mod) => mod.default;
 
 // lazy load routes here
 const componentMap = {
-  "/": () => import("../pages/Landing/Landing").then(getDefault),
+  "/": () => import("../../pages/Landing").then(getDefault),
 };
 
 export function RouteLoader() {
