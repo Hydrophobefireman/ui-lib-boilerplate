@@ -905,10 +905,10 @@
   resolved "https://registry.yarnpkg.com/@hydrophobefireman/j-utils/-/j-utils-2.1.1.tgz#60db8904a26084f2092769686859d74d12467234"
   integrity sha512-4ZOe1ltbAbpfyafoaEimFiobwxcoNGuF4Mx6kmLWj0RwVCbTCsOrjSyoZUIn9kJ+0RJd4vycdmhOcvkPmoI2vg==
 
-"@hydrophobefireman/j-utils@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@hydrophobefireman/j-utils/-/j-utils-2.1.4.tgz#2349f6caf2e92321dde127d5f43c9f31b5e9330c"
-  integrity sha512-0Y7whoZ3ODc9OEk8K7DVS9sIGkKe9v2k74XK3jaSO+Rcoxm00X8mHAtbPh8UMr0NBwAt99lKHQGPBF3SLlxHcw==
+"@hydrophobefireman/j-utils@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@hydrophobefireman/j-utils/-/j-utils-2.1.5.tgz#7c5fd73a979ff9a12cefa0d4bfdf37db907986b3"
+  integrity sha512-665C3K1wYdIsS/mK25+p/5xuIg7bNLhd+IkEhyBqDyn2ISn0qGSQNaZIyQh/+2ft1hF4kjc0NcH1P4IqSE0msg==
 
 "@hydrophobefireman/qwc@^0.0.6":
   version "0.0.6"
@@ -1819,10 +1819,10 @@ core-js-pure@^3.0.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
   integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
 
-core-js@^3.6.5:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
-  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
+core-js@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.7.0.tgz#b0a761a02488577afbf97179e4681bf49568520f"
+  integrity sha512-NwS7fI5M5B85EwpWuIwJN4i/fbisQUwLwiSNUWeXlkAZ0sbBjLEvLvFLf1uzAUV66PcEPt4xCGCmOZSxVf3xzA==
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -3624,10 +3624,10 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-mini-css-extract-plugin@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.2.1.tgz#30ea7dee632b3002b0c77aeed447790408cb247e"
-  integrity sha512-G3yw7/TQaPfkuiR73MDcyiqhyP8SnbmLhUbpC76H+wtQxA6wfKhMCQOCb6wnPK0dQbjORAeOILQqEesg4/wF7A==
+mini-css-extract-plugin@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.3.0.tgz#bbcba978b68c39f0a9c75822cfb2874f9cf6b018"
+  integrity sha512-4DKmPwFd0XKlwoqvrkLi2X8Mlosh2ey/E/OVAucnPUdzGqrSWHgSqed/p4Ue2Q39JjIvcdSDgmZDO6mir5Ovmw==
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
