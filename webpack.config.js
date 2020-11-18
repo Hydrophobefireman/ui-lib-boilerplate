@@ -6,11 +6,11 @@ const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin")
   .default;
 const WebpackModuleNoModulePlugin = require("webpack-module-nomodule-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const cfg = require("./.babelrc");
 const { autoPrefixCSS } = require("catom/dist/css");
+const babel = require("./.babelrc");
+const uiConfig = require("./ui.config.json");
 
 const mode = process.env.NODE_ENV;
-
 const isProd = mode === "production";
 
 function prodOrDev(a, b) {
@@ -22,7 +22,7 @@ const jsLoaderOptions = (isLegacy) => ({
   exclude: /(node_modules\/(?!(@hydrophobefireman|statedrive)))|(injectables)/,
   use: {
     loader: "babel-loader",
-    options: cfg.env[isLegacy ? "legacy" : "modern"],
+    options: babel.env[isLegacy ? "legacy" : "modern"],
   },
 });
 const cssLoaderOptions = {
@@ -42,8 +42,11 @@ const cssLoaderOptions = {
 };
 const contentLoaderOptions = {
   test: /\.(png|jpg|gif|ico|svg)$/,
-  use: [{ loader: "url-loader", options: { fallback: "file-loader" } }],
+  use: uiConfig.preferBase64Images
+    ? [{ loader: "url-loader", options: { fallback: "file-loader" } }]
+    : [{ loader: "file-loader" }],
 };
+
 function getEnvObject(isLegacy) {
   const prod = !isLegacy;
   return {
@@ -57,12 +60,14 @@ function getEnvObject(isLegacy) {
 }
 function getCfg(isLegacy) {
   return {
-    cache: {
-      type: "filesystem",
-      buildDependencies: {
-        config: [__filename],
-      },
-    },
+    cache: uiConfig.enableCatom
+      ? { type: "memory" }
+      : {
+          type: "filesystem",
+          buildDependencies: {
+            config: [__filename],
+          },
+        },
     devServer: {
       contentBase: `${__dirname}/docs`,
       compress: !0,
@@ -100,8 +105,7 @@ function getCfg(isLegacy) {
           tags,
           options
         ) {
-          let css = "";
-          //  css = await autoPrefixCSS();
+          let css = uiConfig.enableCatom ? await autoPrefixCSS() : "";
           return {
             compilation,
             webpackConfig: compilation.options,
@@ -133,7 +137,7 @@ function getCfg(isLegacy) {
       new MiniCssExtractPlugin({}),
       isProd &&
         new OptimizeCSSAssetsPlugin({ cssProcessor: require("cssnano") }),
-      // isProd && new HTMLInlineCSSWebpackPlugin({}),
+      isProd && uiConfig.inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
       new WebpackModuleNoModulePlugin(isLegacy ? "legacy" : "modern"),
     ].filter(Boolean),
   };

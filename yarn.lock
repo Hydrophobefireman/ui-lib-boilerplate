@@ -900,7 +900,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@hydrophobefireman/j-utils@^2.1.1", "@hydrophobefireman/j-utils@^2.1.6":
+"@hydrophobefireman/j-utils@^2.1.6":
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/@hydrophobefireman/j-utils/-/j-utils-2.1.6.tgz#4ddf7e57d53ceae7245c7b907665f98f6f2f30f8"
   integrity sha512-gwcKHXTsos2KaQisSE/0QxaelhwHL+EnpcyBN9I9oDnQfhqj6D05XPlMGJIuuwn1jiWtd9z8C/bjefEuUQrNng==
@@ -2863,10 +2863,10 @@ html-entities@^1.3.1:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.3.1.tgz#fb9a1a4b5b14c5daba82d3e34c6ae4fe701a0e44"
   integrity sha512-rhE/4Z3hIhzHAUKbW8jVcCyuT5oJCXXqhN/6mXXVCpzTmvJnoH2HL/bt3EZ6p55jbFJBeAe1ZNpL5BugLujxNA==
 
-html-inline-css-webpack-plugin@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/html-inline-css-webpack-plugin/-/html-inline-css-webpack-plugin-1.9.0.tgz#b857d45dc9737583245cbcd5ee0cbda5984b29bf"
-  integrity sha512-Wx9AlJGoDvfdRlc9JE4eN9Udlr02ExCLNHSofaazQy+eHyjgp/Rz6cjaJkuWv3MAS9uitWW00WcGWrfxsTD6hg==
+html-inline-css-webpack-plugin@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/html-inline-css-webpack-plugin/-/html-inline-css-webpack-plugin-1.9.1.tgz#12db5b71d3e7c1c8aceaee2c15daf09ac672c14b"
+  integrity sha512-KLLDoTmLKSBh8e0HnoLnot8GpiHts2VTZTfYuFbQrQV1DdM31wPf1XS7RSDLMlYOGtSXQYiedlQ+cqTaoj48Sg==
   dependencies:
     lodash "^4.17.15"
 
@@ -3644,10 +3644,10 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-mini-css-extract-plugin@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.3.0.tgz#bbcba978b68c39f0a9c75822cfb2874f9cf6b018"
-  integrity sha512-4DKmPwFd0XKlwoqvrkLi2X8Mlosh2ey/E/OVAucnPUdzGqrSWHgSqed/p4Ue2Q39JjIvcdSDgmZDO6mir5Ovmw==
+mini-css-extract-plugin@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.3.1.tgz#1375c88b2bc2a9d197670a55761edcd1b5d72f21"
+  integrity sha512-jIOheqh9EU98rqj6ZaFTYNNDSFqdakNqaUZfkYwaXPjI9batmXVXX+K71NrqRAgtoGefELBMld1EQ7dqSAD5SQ==
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
@@ -5129,12 +5129,12 @@ stable@^0.1.8:
   resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
   integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
 
-statedrive@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/statedrive/-/statedrive-0.0.7.tgz#e2ed9ae540da466e4be68a3e7c75dbb9e028e4c4"
-  integrity sha512-zF3Bsoy5fe/H/NN9I1us5o1rTx62kPIXJCAM38be5zm8ISpaeRwPbTaJLuN1ZqhmynbkXbl2KktosK5rXb7Ibw==
+statedrive@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/statedrive/-/statedrive-0.0.8.tgz#b6cbef35b765df3b1c09aa52dbe5086d1de3ea30"
+  integrity sha512-UHzcoB64coTyytIoafHp5meBjM8EY74RndlvkFALfIVNrddrxHDd26W1hFJJMDA9mCXupArPrYWnbeZMiNeP9A==
   dependencies:
-    "@hydrophobefireman/j-utils" "^2.1.1"
+    "@hydrophobefireman/j-utils" "^2.1.6"
 
 static-extend@^0.1.1:
   version "0.1.2"
@@ -5314,6 +5314,15 @@ terser@^5.3.8:
   version "5.3.8"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.3.8.tgz#991ae8ba21a3d990579b54aa9af11586197a75dd"
   integrity sha512-zVotuHoIfnYjtlurOouTazciEfL7V38QMAOhGqpXDEg6yT13cF4+fEP9b0rrCEQTn+tT46uxgFsTZzhygk+CzQ==
+  dependencies:
+    commander "^2.20.0"
+    source-map "~0.7.2"
+    source-map-support "~0.5.19"
+
+terser@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.4.0.tgz#9815c0839072d5c894e22c6fc508fbe9f5e7d7e8"
+  integrity sha512-3dZunFLbCJis9TAF2VnX+VrQLctRUmt1p3W2kCsJuZE4ZgWqh//+1MZ62EanewrqKoUf4zIaDGZAvml4UDc0OQ==
   dependencies:
     commander "^2.20.0"
     source-map "~0.7.2"
@@ -5680,10 +5689,10 @@ webpack-sources@^2.1.1:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
 
-webpack@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.4.0.tgz#4fdc6ec8a0ff9160701fb8f2eb8d06b33ecbae0f"
-  integrity sha512-udpYTyqz8toTTdaOsL2QKPLeZLt2IEm9qY7yTXuFEQhKu5bk0yQD9BtAdVQksmz4jFbbWOiWmm3NHarO0zr/ng==
+webpack@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.5.1.tgz#d6537f85554a0e59f15e6e683af11befdd0476aa"
+  integrity sha512-v4RzZP9BG2xxMLhxcFIo89M+nyIqGjh35Bhm5EE+I2N8y3dc9jT5OSb1HewUMkzMPyyDscOkVD6pSn6EMtTwNQ==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
