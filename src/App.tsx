@@ -1,6 +1,9 @@
-import { render, VNode } from "@hydrophobefireman/ui-lib";
-import { RouteLoader } from "./components/RouteLoader";
+// javascript is supported
 import "./App.css";
+
+import { VNode, render } from "@hydrophobefireman/ui-lib";
+
+import { RouteLoader } from "./components/RouteLoader";
 
 function App(): VNode {
   return (

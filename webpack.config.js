@@ -7,7 +7,7 @@ const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin")
 const WebpackModuleNoModulePlugin = require("webpack-module-nomodule-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { autoPrefixCSS } = require("catom/dist/css");
-const babel = require("./.babelrc");
+const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
 
 const mode = process.env.NODE_ENV;

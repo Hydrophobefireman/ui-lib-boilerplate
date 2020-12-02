@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "ESNext",
+    "allowJs": true,
     "alwaysStrict": true,
     "declaration": true,
     "moduleResolution": "Node",
