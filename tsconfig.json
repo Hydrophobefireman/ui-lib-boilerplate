@@ -9,5 +9,6 @@
     "rootDir": "./",
     "baseUrl": ".",
     "jsx": "preserve"
-  }
+  },
+  "exclude": [".babelconfig.js"]
 }
