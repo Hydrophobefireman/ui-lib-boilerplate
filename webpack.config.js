@@ -1,3 +1,4 @@
+const path = require("path");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -9,12 +10,15 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { autoPrefixCSS } = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
-
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 
 function prodOrDev(a, b) {
   return isProd ? a : b;
+}
+
+function srcPath(subdir) {
+  return path.join(__dirname, subdir);
 }
 
 const jsLoaderOptions = (isLegacy) => ({
@@ -87,7 +91,10 @@ function getCfg(isLegacy) {
       path: `${__dirname}/docs/`,
       filename: `${isLegacy ? "legacy" : "es6"}/[name]-[contenthash].js`,
     },
-    resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },
+    resolve: {
+      extensions: [".ts", ".tsx", ".js", ".json"],
+      alias: { "@": srcPath("src") },
+    },
     mode,
     optimization: {
       concatenateModules: false,

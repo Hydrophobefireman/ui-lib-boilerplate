@@ -8,7 +8,8 @@
     "target": "ESNext",
     "rootDir": "./",
     "baseUrl": ".",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": { "@/*": ["./src/*"] }
   },
-  "exclude": [".babelconfig.js"]
+  "exclude": [".babelconfig.js", "webpack.config.js"]
 }
