@@ -1,12 +1,12 @@
-// These are some utility hooks that you're free to use in your code, or remove entirely
 import {
   useState,
   Router,
   useEffect,
   RouterSubscription,
+  useRef,
 } from "@hydrophobefireman/ui-lib";
 
-export function useMount(fn: () => unknown | (() => void)) {
+function useMount(fn: () => unknown | (() => void)) {
   return useEffect(fn, []);
 }
 
@@ -34,4 +34,24 @@ export function useViewportSize(): [number, number] {
   });
 
   return dimensions;
+}
+type CB = () => void;
+export function useInterval(callback: CB, delay: number) {
+  const savedCallback = useRef<CB>();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
