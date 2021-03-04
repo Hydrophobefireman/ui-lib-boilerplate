@@ -112,7 +112,12 @@ function getCfg(isLegacy) {
           tags,
           options
         ) {
-          let css = uiConfig.enableCatom ? await autoPrefixCSS() : "";
+          let css = uiConfig.enableCatom
+            ? `<style>
+                ${await autoPrefixCSS()}
+               </style>
+          `
+            : "";
           return {
             compilation,
             webpackConfig: compilation.options,
