@@ -13,6 +13,7 @@ const uiConfig = require("./ui.config.json");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 
+const outputDir = uiConfig.outputDir;
 function prodOrDev(a, b) {
   return isProd ? a : b;
 }
@@ -73,7 +74,7 @@ function getCfg(isLegacy) {
           },
         },
     devServer: {
-      contentBase: `${__dirname}/docs`,
+      contentBase: `${__dirname}/${outputDir}`,
       compress: !0,
       port: 4200,
       historyApiFallback: true,
@@ -88,7 +89,7 @@ function getCfg(isLegacy) {
     entry: `${__dirname}/src/App.tsx`,
     output: {
       environment: getEnvObject(isLegacy),
-      path: `${__dirname}/docs/`,
+      path: `${__dirname}/${outputDir}/`,
       filename: `${isLegacy ? "legacy" : "es6"}/[name]-[contenthash].js`,
     },
     resolve: {
