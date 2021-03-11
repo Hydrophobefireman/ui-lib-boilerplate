@@ -76,7 +76,7 @@ function getCfg(isLegacy) {
         },
     devServer: {
       contentBase: `${__dirname}/${outputDir}`,
-      compress: !0,
+      compress: true,
       port: 4200,
       historyApiFallback: true,
     },
@@ -136,16 +136,17 @@ function getCfg(isLegacy) {
         },
         inject: "body",
         template: `${__dirname}/index.html`,
-        xhtml: !0,
+        xhtml: true,
         favicon: "./favicon.ico",
         minify: prodOrDev(
           {
-            collapseBooleanAttributes: !0,
-            collapseWhitespace: !0,
-            html5: !0,
-            minifyCSS: !0,
-            removeEmptyAttributes: !0,
-            removeRedundantAttributes: !0,
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            html5: true,
+            minifyCSS: true,
+            removeEmptyAttributes: true,
+            removeRedundantAttributes: true,
+            removeComments: true,
           },
           !1
         ),
