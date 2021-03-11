@@ -13,7 +13,8 @@ const uiConfig = require("./ui.config.json");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 
-const outputDir = uiConfig.outputDir;
+const { outputDir, staticFilePrefix, inlineCSS, enableCatom } = uiConfig;
+
 function prodOrDev(a, b) {
   return isProd ? a : b;
 }
@@ -65,7 +66,7 @@ function getEnvObject(isLegacy) {
 }
 function getCfg(isLegacy) {
   return {
-    cache: uiConfig.enableCatom
+    cache: enableCatom
       ? { type: "memory" }
       : {
           type: "filesystem",
@@ -90,7 +91,9 @@ function getCfg(isLegacy) {
     output: {
       environment: getEnvObject(isLegacy),
       path: `${__dirname}/${outputDir}/`,
-      filename: `${isLegacy ? "legacy" : "es6"}/[name]-[contenthash].js`,
+      filename: `${staticFilePrefix}/${
+        isLegacy ? "legacy" : "es6"
+      }/[name]-[chunkhash].js`,
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".json"],
@@ -147,10 +150,10 @@ function getCfg(isLegacy) {
           !1
         ),
       }),
-      new MiniCssExtractPlugin({}),
+      new MiniCssExtractPlugin({ filename: `${staticFilePrefix}/main.css` }),
       isProd &&
         new OptimizeCSSAssetsPlugin({ cssProcessor: require("cssnano") }),
-      isProd && uiConfig.inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
+      isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
       new WebpackModuleNoModulePlugin(isLegacy ? "legacy" : "modern"),
     ].filter(Boolean),
   };
