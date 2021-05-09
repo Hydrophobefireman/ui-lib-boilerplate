@@ -3,6 +3,6 @@
   "inlineCSS": false,
   "preferBase64Images": true,
   "outputDir": "build",
-  "staticFilePrefix": "static/ui",
+  "staticFilePrefix": "_ui",
   "fonts": [{ "href": "https://fonts.pycode.tk/poppins.css" }]
 }
