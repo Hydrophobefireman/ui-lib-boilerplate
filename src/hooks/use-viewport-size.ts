@@ -9,7 +9,7 @@ export function useViewportSize(): [number, number] {
   const [dimensions, setDimensions] = useState(getDimensions);
   useMount(() => {
     const callback = () => setDimensions(getDimensions);
-    addEventListener("resize", callback);
+    addEventListener("resize", callback, { passive: true });
     return () => removeEventListener("resize", callback);
   });
 
