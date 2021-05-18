@@ -1,5 +1,5 @@
-import { useState } from "@hydrophobefireman/ui-lib";
 import { useMount } from "./use-mount";
+import { useState } from "@hydrophobefireman/ui-lib";
 
 const getDimensions = (): [number, number] => [
   window.innerHeight,
