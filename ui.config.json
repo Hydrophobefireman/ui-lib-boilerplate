@@ -4,5 +4,5 @@
   "preferBase64Images": true,
   "outputDir": "build",
   "staticFilePrefix": "_ui",
-  "fonts": [{ "href": "https://fonts.pycode.tk/poppins.css" }]
+  "fonts": [{ "href": "https://fonts.hpfm.dev/poppins.css" }]
 }
