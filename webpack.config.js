@@ -157,7 +157,9 @@ function getCfg(isLegacy) {
           !1
         ),
       }),
-      new MiniCssExtractPlugin({ filename: `${staticFilePrefix}/main.css` }),
+      new MiniCssExtractPlugin({
+        filename: `${staticFilePrefix}/main-[contenthash].css`,
+      }),
       isProd &&
         new OptimizeCSSAssetsPlugin({ cssProcessor: require("cssnano")() }),
       isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
