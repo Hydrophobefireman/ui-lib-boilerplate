@@ -10,7 +10,7 @@ const config = require("../ui.config.json");
 
 const currPath = __dirname;
 const outputDir = join(currPath, "..", config.outputDir);
-const BUILD_STATIC = join(currPath, "..", "build_static/");
+const BUILD_STATIC = join(currPath, "..", `${config.staticDir}/`);
 
 function copyFolderSync(from, to) {
   if (!existsSync(to)) {

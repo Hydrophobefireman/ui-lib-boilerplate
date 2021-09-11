@@ -3,8 +3,8 @@ const TerserWebpackPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoPrefixPlugin = require("autoprefixer");
-const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin")
-  .default;
+const HTMLInlineCSSWebpackPlugin =
+  require("html-inline-css-webpack-plugin").default;
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { autoPrefixCSS } = require("catom/dist/css");
@@ -12,7 +12,6 @@ const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
-
 const { outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts } = uiConfig;
 
 function prodOrDev(a, b) {
@@ -78,7 +77,9 @@ function getCfg(isLegacy) {
           },
         },
     devServer: {
-      contentBase: `${__dirname}/${outputDir}`,
+      static: {
+        directory: path.join(__dirname, uiConfig.staticDir),
+      },
       compress: true,
       port: 4200,
       historyApiFallback: true,
@@ -90,7 +91,7 @@ function getCfg(isLegacy) {
         contentLoaderOptions,
       ],
     },
-    entry: `${__dirname}/src/App.tsx`,
+    entry: path.join(__dirname, "/src/App.tsx"),
     output: {
       publicPath: "/",
       environment: getEnvObject(isLegacy),
