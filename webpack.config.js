@@ -7,9 +7,9 @@ const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { autoPrefixCSS } = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
+const { utimesSync, closeSync } = require("fs");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 const { outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts } = uiConfig;
@@ -21,7 +21,16 @@ function prodOrDev(a, b) {
 function srcPath(subdir) {
   return path.join(__dirname, subdir);
 }
+function touch(filename) {
+  const time = new Date();
+  try {
+    utimesSync(filename, time, time);
+  } catch (err) {
+    closeSync(fs.openSync(filename, "w"));
+  }
+}
 
+touch(srcPath("src/.catom.css"));
 const jsLoaderOptions = (isLegacy) => ({
   test: /\.(m?js|tsx?)$/,
   exclude: /(node_modules\/(?!(@hydrophobefireman|statedrive)))|(injectables)/,
@@ -116,30 +125,6 @@ function getCfg(isLegacy) {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        templateParameters: async function templateParametersGenerator(
-          compilation,
-          files,
-          tags,
-          options
-        ) {
-          let css = uiConfig.enableCatom
-            ? `<style>
-                ${await autoPrefixCSS()}
-               </style>
-          `
-            : "";
-          return {
-            compilation,
-            webpackConfig: compilation.options,
-            htmlWebpackPlugin: {
-              tags,
-              files,
-              options: Object.assign(options, {
-                css,
-              }),
-            },
-          };
-        },
         inject: "body",
         template: `${__dirname}/index.html`,
         xhtml: true,
