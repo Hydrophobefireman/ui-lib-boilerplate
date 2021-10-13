@@ -9,7 +9,7 @@ const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule"
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
-const { utimesSync, closeSync } = require("fs");
+const { utimesSync, closeSync,openSync } = require("fs");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 const { outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts } = uiConfig;
@@ -26,7 +26,7 @@ function touch(filename) {
   try {
     utimesSync(filename, time, time);
   } catch (err) {
-    closeSync(fs.openSync(filename, "w"));
+    closeSync(openSync(filename, "w"));
   }
 }
 
