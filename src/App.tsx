@@ -1,3 +1,5 @@
+import "@kit/styles";
+
 // javascript is supported
 import "./App.css";
 
