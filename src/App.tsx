@@ -1,14 +1,14 @@
 // javascript is supported
 import "./App.css";
 
-import { VNode, render } from "@hydrophobefireman/ui-lib";
+import {VNode, render} from "@hydrophobefireman/ui-lib";
 
-import { RouteLoader } from "./components/RouteLoader";
+import {Router} from "./_router";
 
 function App(): VNode {
   return (
     <main>
-      <RouteLoader />
+      <Router />
     </main>
   );
 }

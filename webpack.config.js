@@ -7,12 +7,12 @@ const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { autoPrefixCSS } = require("catom/dist/css");
+const {autoPrefixCSS} = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
-const { outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts } = uiConfig;
+const {outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts} = uiConfig;
 
 function prodOrDev(a, b) {
   return isProd ? a : b;
@@ -33,14 +33,14 @@ const jsLoaderOptions = (isLegacy) => ({
 const cssLoaderOptions = {
   test: /\.css$/,
   use: [
-    { loader: MiniCssExtractPlugin.loader },
+    {loader: MiniCssExtractPlugin.loader},
     {
       loader: "css-loader",
     },
     {
       loader: "postcss-loader",
       options: {
-        postcssOptions: { plugins: [autoPrefixPlugin()] },
+        postcssOptions: {plugins: [autoPrefixPlugin()]},
       },
     },
   ],
@@ -48,8 +48,8 @@ const cssLoaderOptions = {
 const contentLoaderOptions = {
   test: /\.(png|jpg|gif|ico|svg)$/,
   use: uiConfig.preferBase64Images
-    ? [{ loader: "url-loader", options: { fallback: "file-loader" } }]
-    : [{ loader: "file-loader" }],
+    ? [{loader: "url-loader", options: {fallback: "file-loader"}}]
+    : [{loader: "file-loader"}],
 };
 
 function getEnvObject(isLegacy) {
@@ -69,7 +69,7 @@ function getEnvObject(isLegacy) {
 function getCfg(isLegacy) {
   return {
     cache: enableCatom
-      ? { type: "memory" }
+      ? {type: "memory"}
       : {
           type: "filesystem",
           buildDependencies: {
@@ -102,12 +102,12 @@ function getCfg(isLegacy) {
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".json"],
-      alias: { "@": srcPath("src") },
+      alias: {"@": srcPath("src"), "@kit": "@hydrophobefireman/kit"},
     },
     mode,
     optimization: {
       concatenateModules: false,
-      minimizer: prodOrDev([new TerserWebpackPlugin({ parallel: true })], []),
+      minimizer: prodOrDev([new TerserWebpackPlugin({parallel: true})], []),
       splitChunks: {
         chunks: "all",
       },
@@ -161,7 +161,7 @@ function getCfg(isLegacy) {
         filename: `${staticFilePrefix}/main-[contenthash].css`,
       }),
       isProd &&
-        new OptimizeCSSAssetsPlugin({ cssProcessor: require("cssnano")() }),
+        new OptimizeCSSAssetsPlugin({cssProcessor: require("cssnano")()}),
       isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
       new WebpackModuleNoModulePlugin({
         mode: isLegacy ? "legacy" : "modern",
