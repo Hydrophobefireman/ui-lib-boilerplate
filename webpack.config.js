@@ -2,7 +2,6 @@ const path = require("path");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const autoPrefixPlugin = require("autoprefixer");
 const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
@@ -10,10 +9,14 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const {autoPrefixCSS} = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
+const {browserslistToTargets, transform} = require("@parcel/css");
+const browserslist = require("browserslist");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 const {outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts} = uiConfig;
-
+const browserslistConfig = browserslistToTargets(
+  browserslist("last 2 versions")
+);
 function prodOrDev(a, b) {
   return isProd ? a : b;
 }
@@ -37,12 +40,6 @@ const cssLoaderOptions = {
     {
       loader: "css-loader",
     },
-    {
-      loader: "postcss-loader",
-      options: {
-        postcssOptions: {plugins: [autoPrefixPlugin()]},
-      },
-    },
   ],
 };
 const contentLoaderOptions = {
@@ -51,6 +48,22 @@ const contentLoaderOptions = {
     ? [{loader: "url-loader", options: {fallback: "file-loader"}}]
     : [{loader: "file-loader"}],
 };
+/**
+ *
+ * @param {string} css
+ */
+function parcelHandleCss(css) {
+  const {code} = transform({
+    code: Buffer.from(css),
+    filename: "1.css",
+    drafts: {customMedia: true, nesting: true},
+    minify: true,
+    // targets: browserslistConfig,
+    sourceMap: false,
+  });
+
+  return Promise.resolve({css: code.toString()});
+}
 
 function getEnvObject(isLegacy) {
   const prod = !isLegacy;
@@ -161,7 +174,7 @@ function getCfg(isLegacy) {
         filename: `${staticFilePrefix}/main-[contenthash].css`,
       }),
       isProd &&
-        new OptimizeCSSAssetsPlugin({cssProcessor: require("cssnano")()}),
+        new OptimizeCSSAssetsPlugin({cssProcessor: {process: parcelHandleCss}}),
       isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
       new WebpackModuleNoModulePlugin({
         mode: isLegacy ? "legacy" : "modern",
