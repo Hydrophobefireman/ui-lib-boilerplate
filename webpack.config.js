@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const {autoPrefixCSS} = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
@@ -58,7 +58,7 @@ function parcelHandleCss(css) {
     filename: "1.css",
     drafts: {customMedia: true, nesting: true},
     minify: true,
-    // targets: browserslistConfig,
+    targets: browserslistConfig,
     sourceMap: false,
   });
 
@@ -120,7 +120,16 @@ function getCfg(isLegacy) {
     mode,
     optimization: {
       concatenateModules: false,
-      minimizer: prodOrDev([new TerserWebpackPlugin({parallel: true})], []),
+      minimizer: prodOrDev(
+        [
+          new TerserWebpackPlugin({parallel: true}),
+          new CssMinimizerPlugin({
+            minify: CssMinimizerPlugin.parcelCssMinify,
+            parallel: Math.floor(require("os").cpus()?.length / 2) || 1,
+          }),
+        ],
+        []
+      ),
       splitChunks: {
         chunks: "all",
       },
@@ -173,8 +182,6 @@ function getCfg(isLegacy) {
       new MiniCssExtractPlugin({
         filename: `${staticFilePrefix}/main-[contenthash].css`,
       }),
-      isProd &&
-        new OptimizeCSSAssetsPlugin({cssProcessor: {process: parcelHandleCss}}),
       isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
       new WebpackModuleNoModulePlugin({
         mode: isLegacy ? "legacy" : "modern",
