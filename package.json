@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-cli serve",
+    "dev": "cross-env NODE_ENV=development webpack-cli serve",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "prebuild": "tsc --noEmit && node scripts/prebuild.js",
     "postbuild": "node scripts/postbuild.js",
