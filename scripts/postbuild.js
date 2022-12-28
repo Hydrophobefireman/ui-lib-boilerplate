@@ -5,7 +5,7 @@ const {
   mkdirSync,
   existsSync,
 } = require("fs");
-const { join } = require("path");
+const {join} = require("path");
 const config = require("../ui.config.json");
 
 const currPath = __dirname;

@@ -1,4 +1,4 @@
-import { Renderable, useEffect, useState } from "@hydrophobefireman/ui-lib";
+import {Renderable, useEffect, useState} from "@hydrophobefireman/ui-lib";
 
 interface PaginateProps<T> {
   atOnce: number;
@@ -44,7 +44,7 @@ export function Paginate<T>({
       <button
         class={previousButtonClass || buttonClass}
         onClick={prev}
-        style={{ visibility: hasPrev ? "visible" : "hidden", transition: "0s" }}
+        style={{visibility: hasPrev ? "visible" : "hidden", transition: "0s"}}
       >
         {previousText || "Previous"}
       </button>
@@ -52,7 +52,7 @@ export function Paginate<T>({
       <button
         class={nextButtonClass || buttonClass}
         onClick={next}
-        style={{ visibility: hasMore ? "visible" : "hidden", transition: "0s" }}
+        style={{visibility: hasMore ? "visible" : "hidden", transition: "0s"}}
       >
         {nextText || "Next"}
       </button>

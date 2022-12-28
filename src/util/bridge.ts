@@ -1,5 +1,5 @@
-import { Bridge } from "@hydrophobefireman/flask-jwt-jskit";
-import { redirect } from "@hydrophobefireman/ui-lib";
+import {Bridge} from "@hydrophobefireman/flask-jwt-jskit";
+import {redirect} from "@hydrophobefireman/ui-lib";
 
 const client = new Bridge<any>(null);
 
@@ -11,8 +11,8 @@ client.setRoutes({
 });
 client.onLogout(() => redirect("/login"));
 
-const { useAuthState, useIsLoggedIn } = client.getHooks();
+const {useAuthState, useIsLoggedIn} = client.getHooks();
 
 const requests = client.getHttpClient();
 
-export { useAuthState, useIsLoggedIn, requests, client };
+export {useAuthState, useIsLoggedIn, requests, client};

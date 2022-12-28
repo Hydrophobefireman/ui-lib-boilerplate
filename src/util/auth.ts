@@ -1,1 +1,1 @@
-export { useAuthState, useIsLoggedIn, client } from "./bridge";
+export {useAuthState, useIsLoggedIn, client} from "./bridge";

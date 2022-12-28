@@ -1,4 +1,4 @@
-import { useEffect, useState } from "@hydrophobefireman/ui-lib";
+import {useEffect, useState} from "@hydrophobefireman/ui-lib";
 
 /** Exported routes need to be default exports */
 export default function Landing() {

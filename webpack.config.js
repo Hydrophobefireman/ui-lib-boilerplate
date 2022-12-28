@@ -48,22 +48,22 @@ const contentLoaderOptions = {
     ? [{loader: "url-loader", options: {fallback: "file-loader"}}]
     : [{loader: "file-loader"}],
 };
-/**
- *
- * @param {string} css
- */
-function parcelHandleCss(css) {
-  const {code} = transform({
-    code: Buffer.from(css),
-    filename: "1.css",
-    drafts: {customMedia: true, nesting: true},
-    minify: true,
-    targets: browserslistConfig,
-    sourceMap: false,
-  });
+// /**
+//  *
+//  * @param {string} css
+//  */
+// function parcelHandleCss(css) {
+//   const {code} = transform({
+//     code: Buffer.from(css),
+//     filename: "1.css",
+//     drafts: {customMedia: true, nesting: true},
+//     minify: true,
+//     targets: browserslistConfig,
+//     sourceMap: false,
+//   });
 
-  return Promise.resolve({css: code.toString()});
-}
+//   return Promise.resolve({css: code.toString()});
+// }
 
 function getEnvObject(isLegacy) {
   const prod = !isLegacy;
@@ -124,7 +124,7 @@ function getCfg(isLegacy) {
         [
           new TerserWebpackPlugin({parallel: true}),
           new CssMinimizerPlugin({
-            minify: CssMinimizerPlugin.parcelCssMinify,
+            minify: CssMinimizerPlugin.lightningCssMinify,
             parallel: Math.floor(require("os").cpus()?.length / 2) || 1,
           }),
         ],
