@@ -4,18 +4,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
+const webpack = require("webpack");
+
 const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const {autoPrefixCSS} = require("catom/dist/css");
 const babel = require("./.babelconfig");
 const uiConfig = require("./ui.config.json");
-const {browserslistToTargets, transform} = require("lightningcss");
+const {browserslistToTargets, transform} = require("@parcel/css");
 const browserslist = require("browserslist");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const mode = process.env.NODE_ENV;
 const isProd = mode === "production";
 const {outputDir, staticFilePrefix, inlineCSS, enableCatom, fonts} = uiConfig;
+require("dotenv").config();
 const browserslistConfig = browserslistToTargets(
-  browserslist("last 2 versions")
+  browserslist("last 2 versions"),
 );
 function prodOrDev(a, b) {
   return isProd ? a : b;
@@ -48,22 +52,6 @@ const contentLoaderOptions = {
     ? [{loader: "url-loader", options: {fallback: "file-loader"}}]
     : [{loader: "file-loader"}],
 };
-// /**
-//  *
-//  * @param {string} css
-//  */
-// function parcelHandleCss(css) {
-//   const {code} = transform({
-//     code: Buffer.from(css),
-//     filename: "1.css",
-//     drafts: {customMedia: true, nesting: true},
-//     minify: true,
-//     targets: browserslistConfig,
-//     sourceMap: false,
-//   });
-
-//   return Promise.resolve({css: code.toString()});
-// }
 
 function getEnvObject(isLegacy) {
   const prod = !isLegacy;
@@ -124,11 +112,11 @@ function getCfg(isLegacy) {
         [
           new TerserWebpackPlugin({parallel: true}),
           new CssMinimizerPlugin({
-            minify: CssMinimizerPlugin.lightningCssMinify,
+            minify: CssMinimizerPlugin.parcelCssMinify,
             parallel: Math.floor(require("os").cpus()?.length / 2) || 1,
           }),
         ],
-        []
+        [],
       ),
       splitChunks: {
         chunks: "all",
@@ -142,7 +130,7 @@ function getCfg(isLegacy) {
           compilation,
           files,
           tags,
-          options
+          options,
         ) {
           let css = uiConfig.enableCatom
             ? `<style>
@@ -176,9 +164,19 @@ function getCfg(isLegacy) {
             removeRedundantAttributes: true,
             removeComments: true,
           },
-          !1
+          !1,
         ),
       }),
+      isProd &&
+        new WorkboxPlugin.GenerateSW({
+          // these options encourage the ServiceWorkers to get in there fast
+          // and not allow any straggling "old" SWs to hang around
+          clientsClaim: true,
+          skipWaiting: true,
+          importScripts: ["/encrypted-image-helper.js"],
+          navigateFallback: "/index.html",
+          exclude: [/^\/api\//],
+        }),
       new MiniCssExtractPlugin({
         filename: `${staticFilePrefix}/main-[contenthash].css`,
       }),
@@ -187,8 +185,9 @@ function getCfg(isLegacy) {
         mode: isLegacy ? "legacy" : "modern",
         fonts,
       }),
+      new webpack.EnvironmentPlugin(["NODE_ENV"]),
     ].filter(Boolean),
   };
 }
 
-module.exports = isProd ? [getCfg(false), getCfg(true)] : getCfg(false);
+module.exports = getCfg(false);
