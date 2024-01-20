@@ -4,7 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLInlineCSSWebpackPlugin =
   require("html-inline-css-webpack-plugin").default;
 const webpack = require("webpack");
-const WebpackModuleNoModulePlugin = require("@hydrophobefireman/module-nomodule");
+const {
+  HtmlWebpackEsmodulesPlugin,
+  FontInlineWebpackPlugin,
+} = require("@hydrophobefireman/module-nomodule");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const {autoPrefixCSS} = require("catom/dist/css");
 const babel = require("./.babelconfig");
@@ -165,10 +168,10 @@ function getCfg(isLegacy) {
         filename: `${staticFilePrefix}/main-[contenthash].css`,
       }),
       isProd && inlineCSS && new HTMLInlineCSSWebpackPlugin({}),
-      new WebpackModuleNoModulePlugin({
+      new HtmlWebpackEsmodulesPlugin({
         mode: isLegacy ? "legacy" : "modern",
-        fonts,
       }),
+      new FontInlineWebpackPlugin({fonts}),
       new webpack.EnvironmentPlugin(["NODE_ENV"]),
     ].filter(Boolean),
   };

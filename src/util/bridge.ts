@@ -1,18 +1,18 @@
-import {Bridge} from "@hydrophobefireman/flask-jwt-jskit";
+import {AuthBridge} from "@hydrophobefireman/flask-jwt-jskit";
 import {redirect} from "@hydrophobefireman/ui-lib";
 
-const client = new Bridge<any>(null);
+const client = new AuthBridge<any>();
 
 // change these according to your backend
-client.setRoutes({
-  loginRoute: "/login",
-  refreshTokenRoute: "/refresh",
-  initialAuthCheckRoute: "/accounts/me",
-});
-client.onLogout(() => redirect("/login"));
+// client.setRoutes({
+//   loginRoute: "/login",
+//   refreshTokenRoute: "/refresh",
+//   initialAuthCheckRoute: "/accounts/me",
+// });
+// client.onLogout(() => redirect("/login"));
 
-const {useAuthState, useIsLoggedIn} = client.getHooks();
+const {useIsLoggedIn, useCurrentAuthState} = client.getHooks();
 
 const requests = client.getHttpClient();
 
-export {useAuthState, useIsLoggedIn, requests, client};
+export {useIsLoggedIn, useCurrentAuthState, requests, client};
