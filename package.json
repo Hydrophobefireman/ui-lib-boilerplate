@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "prebuild": "tsc --noEmit && node scripts/prebuild.js",
     "postbuild": "node scripts/postbuild.js",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "author": "Hudrophobefireman",
   "license": "ISC",
