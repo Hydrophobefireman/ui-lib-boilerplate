@@ -2,21 +2,24 @@
   "compilerOptions": {
     "module": "ESNext",
     "allowJs": true,
-    "alwaysStrict": true,
+    "strict": true,
     "declaration": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
     "rootDir": "./",
     "baseUrl": ".",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "@hydrophobefireman/ui-lib",
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"],
       "@kit": ["./node_modules/@hydrophobefireman/kit"],
       "@kit/*": ["./node_modules/@hydrophobefireman/kit/*"]
     }
   },
-  "exclude": [".babelconfig.js", "webpack.config.js", "./scripts/", "build/"]
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "build"]
 }

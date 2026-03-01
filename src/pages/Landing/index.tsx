@@ -1,4 +1,5 @@
 import {useEffect, useState} from "@hydrophobefireman/ui-lib";
+import {TextButton} from "@kit/button";
 
 /** Exported routes need to be default exports */
 export default function Landing() {
@@ -12,7 +13,7 @@ function Clicker() {
   return (
     <>
       <div>Some UI Lib reactive component</div>
-      <button onClick={increment}>Clicked {clicks} time(s)</button>
+      <TextButton onClick={increment}>Clicked {clicks} time(s)</TextButton>
     </>
   );
 }

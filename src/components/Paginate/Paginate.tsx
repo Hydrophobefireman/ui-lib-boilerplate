@@ -72,7 +72,7 @@ function useCurrentItems(
   all: any[],
   render: (a: any) => Renderable,
   currentIndex: number,
-  endndex: number
+  endndex: number,
 ) {
   function getItems() {
     const items = [];
@@ -82,7 +82,7 @@ function useCurrentItems(
     return items;
   }
   function updateItems() {
-    setItems(getItems);
+    setItems(getItems as any);
   }
   const [items, setItems] = useState(null);
   useEffect(updateItems, [all, render, currentIndex, endndex]);

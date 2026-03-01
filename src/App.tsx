@@ -1,7 +1,11 @@
 import "@kit/styles";
+import "@kit/css-reset";
+import "virtual:catom.css";
 
 // javascript is supported
 import "./App.css";
+
+import {css} from "catom";
 
 import {VNode, render} from "@hydrophobefireman/ui-lib";
 
@@ -15,4 +19,4 @@ function App(): VNode {
   );
 }
 
-render(<App />, document.getElementById("app-mount"));
+render(<App />, document.getElementById("app-mount")!);
